@@ -5,7 +5,7 @@ import '@openzeppelin/contracts/token/ERC721/IERC721.sol'; //Token standart for 
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';  //Token standart for fungible token, allow to buy, share
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
-
+//Refungible token
 contract RFT is ERC20 {
  uint public icoSharePrice;
  uint public icoShareSupply;
@@ -16,6 +16,11 @@ contract RFT is ERC20 {
  IERC20 public dai;
 
  address public admin; 
+
+ modifier onlyAdmin(){
+       require(msg.sender==admin, "not a admin");
+       _;
+   }
 
  constructor(
    string memory _name, //Name of refungible token
@@ -35,9 +40,8 @@ contract RFT is ERC20 {
    admin = msg.sender; 
  }
 
- function startIco() external {
-   require(msg.sender==admin, 'only admin');
-   nft.transferFrom(msg.sender, address(this), nftId);
+ function startIco() external onlyAdmin{
+   nft.transferFrom(msg.sender, address(this), nftId);  //Transfers tokenId token
    icoEnd = block.timestamp + 7 * 86400;  //1 week
  }
 
@@ -50,8 +54,7 @@ contract RFT is ERC20 {
     _mint(msg.sender, shareAmount);
   }
 
-  function withdrawIcoProfits() external{
-    require(msg.sender == admin, 'only admin');
+  function withdrawIcoProfits() external onlyAdmin{
     require(block.timestamp > icoEnd, 'ICO not finished yet');
     uint daiBalance = dai.balanceOf(address(this));
     if(daiBalance > 0) {
