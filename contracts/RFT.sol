@@ -2,11 +2,11 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 import '@openzeppelin/contracts/token/ERC721/IERC721.sol'; //Token standart for NFT, allows to manipulate some NFT token
-import '@openzeppelin/contracts/token/ERC20/IERC20.sol';  //Token standart for fungible token, allow to manipulate of die, buy, share
+import '@openzeppelin/contracts/token/ERC20/IERC20.sol';  //Token standart for fungible token, allow to buy, share
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
-//Refungible token
-contract RFT is ERC20{
+
+contract RFT is ERC20 {
  uint public icoSharePrice;
  uint public icoShareSupply;
  uint public icoEnd;  //If limited in time
