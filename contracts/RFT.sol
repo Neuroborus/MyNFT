@@ -26,7 +26,6 @@ contract RFT is ERC20 {
    uint _icoShareSupply,
    address _daiAddress
  ) public
-
  ERC20(_name, _symbol){
    nftId = _nftId;
    nft = IERC721(_nftAddress);
@@ -51,7 +50,7 @@ contract RFT is ERC20 {
     _mint(msg.sender, shareAmount);
   }
 
-  function withdrawProfits() external{
+  function withdrawIcoProfits() external{
     require(msg.sender == admin, 'only admin');
     require(block.timestamp > icoEnd, 'ICO not finished yet');
     uint daiBalance = dai.balanceOf(address(this));

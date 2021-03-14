@@ -5,7 +5,8 @@ const RFT = artifacts.require('RFT.sol');
 const NFT = artifacts.require('NFT.sol');
 const DAI = artifacts.require('DAI.sol');
 
-const DAI_AMOUNT = web3.utils.toWei('2500')
+const DAI_AMOUNT = web3.utils.toWei('2500');
+const SHARE_AMOUNT = web3.utils.toWei('2500');
 
 contract('RFT', async addresses => {
     const[admin, buyer1, buyer2, buyer3, buyer4, _] = addresses;
@@ -20,7 +21,7 @@ contract('RFT', async addresses => {
             dai.mint(buyer3, DAI_AMOUNT),
             dai.mint(buyer4, DAI_AMOUNT),
         ]);
-        const RFT = await RFT.new(
+        const rft = await RFT.new(
             'My RFT',
             'RFT',
             nft.address,
