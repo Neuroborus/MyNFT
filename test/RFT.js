@@ -1,5 +1,3 @@
-const { Promise } = require("@ungap/global-this");
-
 const { time } = require('@openzeppelin/test-helpers');
 const assert = require("http-assert");
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
@@ -14,7 +12,7 @@ contract('RFT', async addresses => {
 
     it('ICO should work', async () => {
         const dai = await DAI.new();
-        const nft = await NFT.new('My awesome NFT', 'NFT');
+        const nft = await NFT.new('My NFT', 'NFT');
         await nft.mint(admin, 1);
         await Promise.all([
             dai.mint(buyer1, DAI_AMOUNT),
@@ -56,8 +54,5 @@ contract('RFT', async addresses => {
         assert(balanceShareBuyer4.toString() === SHARE_AMOUNT);
         const balanceAdminDai = await dai.balanceOf(admin);
         assert(balanceAdminDai.toString() == web3.utils.toWei('100000'));
-
-
-    })
-);
-}
+    });
+})
