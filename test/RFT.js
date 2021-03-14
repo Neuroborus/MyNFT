@@ -1,6 +1,7 @@
 const { time } = require('@openzeppelin/test-helpers');
-const assert = require("http-assert");
 const { web3 } = require("@openzeppelin/test-helpers/src/setup");
+
+const assert = require("http-assert");
 const RFT = artifacts.require('RFT.sol');
 const NFT = artifacts.require('NFT.sol');
 const DAI = artifacts.require('DAI.sol');
