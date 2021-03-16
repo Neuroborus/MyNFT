@@ -5,7 +5,7 @@ import '@openzeppelin/contracts/token/ERC721/IERC721.sol'; //Token standart for 
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';  //Token standart for fungible token, allow to buy, share
 import '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 
-//Refungible token
+//Refungible token, allow to buy/share nft
 contract RFT is ERC20 {
  uint public icoSharePrice;
  uint public icoShareSupply;
